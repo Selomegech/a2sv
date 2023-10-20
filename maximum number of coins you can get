@@ -1,0 +1,12 @@
+class Solution:
+    def maxCoins(self, piles):
+        sorted_piles = sorted(piles, reverse=True)  # Sort the piles in descending order
+        n = len(piles) // 3  # Determine the number of rounds (3 piles per round)
+        coins = 0
+        i = 1  # Index for selecting every second pile starting from the second pile
+        
+        for _ in range(n):
+            coins += sorted_piles[i]  # Collect coins from your selected pile
+            i += 2  # Move to the next available pile for you
+        
+        return coins
