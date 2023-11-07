@@ -1,0 +1,28 @@
+class Solution:
+    def matchPlayersAndTrainers(self, players: List[int], trainers: List[int]) -> int:
+        # Sort the players and trainers lists
+        players.sort()
+        trainers.sort()
+
+        # Initialize pointers for players and trainers
+        player_ptr = 0
+        trainer_ptr = 0
+
+        # Count the number of matched pairs
+        num_pairs = 0
+
+        # Iterate until one of the lists is exhausted
+        while player_ptr < len(players) and trainer_ptr < len(trainers):
+            player = players[player_ptr]
+            trainer = trainers[trainer_ptr]
+
+            if player <= trainer:
+                # Match the player with the trainer
+                num_pairs += 1
+                player_ptr += 1
+                trainer_ptr += 1
+            else:
+                # Move to the next trainer
+                trainer_ptr += 1
+
+        return num_pairs
