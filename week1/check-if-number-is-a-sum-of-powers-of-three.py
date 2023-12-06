@@ -1,7 +1,12 @@
 class Solution:
     def checkPowersOfThree(self, n: int) -> bool:
-        if n == 0:
-            return True
-        if n < 0 or n % 3 == 2:
-            return False
-        return self.checkPowersOfThree(n // 3) or self.checkPowersOfThree(n - 1)
+        while n>0:
+            if n%3==1:
+                n=n//3
+            elif n%3==0:
+                n=n/3
+            else:
+                return False
+        return True 
+
+            
