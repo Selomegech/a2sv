@@ -1,0 +1,33 @@
+from collections import defaultdict
+
+class Solution:
+    def findAnagrams(self, s: str, p: str) -> List[int]:
+        patternFreq = defaultdict(int)
+        windowFreq = defaultdict(int)
+        matched = 0
+        result = []
+
+        for char in p:
+            patternFreq[char] += 1
+
+        left = 0
+        for right in range(len(s)):
+            char = s[right]
+            windowFreq[char] += 1
+
+            if char in patternFreq and windowFreq[char] <= patternFreq[char]:
+                matched += 1
+
+            if right >= len(p) - 1:
+                if matched == len(p):
+                    result.append(left)
+
+                leftChar = s[left]
+                windowFreq[leftChar] -= 1
+
+                if leftChar in patternFreq and windowFreq[leftChar] < patternFreq[leftChar]:
+                    matched -= 1
+
+                left += 1
+
+        return result
