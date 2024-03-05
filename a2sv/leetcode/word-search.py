@@ -14,7 +14,7 @@ class Solution:
 
             my_set.add((x, y))
 
-            result = (
+            found = (
                 find(x - 1, y, i + 1)
                 or find(x + 1, y, i + 1)
                 or find(x, y - 1, i + 1)
@@ -23,7 +23,7 @@ class Solution:
 
             my_set.remove((x, y))
 
-            return result
+            return found
 
         for x in range(len(board)):
             for y in range(len(board[0])):
